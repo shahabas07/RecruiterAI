@@ -29,7 +29,7 @@ function FAQItem({ question, answer, isOpen, onClick }: { question: string; answ
     <div className={`transition-colors ${isOpen ? 'bg-[#EFF6FF]' : 'bg-white'}`}>
       <button
         onClick={onClick}
-        className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#EFF6FF]/50 transition-colors"
+        className="cursor-pointer w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#EFF6FF]/50 transition-colors"
       >
         <span className="font-semibold text-gray-900 pr-8 text-lg">{question}</span>
         <div className="flex-shrink-0 w-8 h-8 bg-[#EFF6FF] rounded-lg flex items-center justify-center">
@@ -60,7 +60,7 @@ export function FAQNew() {
     <section id="faq" className="py-20 bg-white">
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
-        
+
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Frequently Asked Questions
           </h2>
@@ -85,10 +85,10 @@ export function FAQNew() {
           <h3 className="text-2xl font-bold text-gray-900 mb-2">Still have questions?</h3>
           <p className="text-gray-600 mb-6 text-lg">Our team is here to help you get started</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="bg-[#3B82F6] text-white px-8 py-3 rounded-xl hover:bg-[#2563EB] transition-colors font-semibold shadow-lg">
+            <button className="cursor-pointer bg-[#3B82F6] text-white px-8 py-3 rounded-xl hover:bg-[#2563EB] transition-colors font-semibold shadow-lg text-base">
               Contact Support
             </button>
-            <button className="bg-white text-gray-900 px-8 py-3 rounded-xl hover:bg-gray-50 transition-colors border-2 border-gray-200 font-semibold">
+            <button className="cursor-pointer bg-white text-gray-900 px-8 py-3 rounded-xl hover:bg-gray-50 transition-colors border-2 border-gray-200 font-semibold text-base">
               Schedule a Call
             </button>
           </div>

@@ -54,11 +54,13 @@ export function Header() {
           <div className="flex items-center gap-4">
             <button
               className="
+                cursor-pointer
                 hidden md:block
                 text-[#737373]
                 hover:text-[#3B82F6]
                 transition-colors
                 font-medium
+                text-base
               "
             >
               Sign In
@@ -66,18 +68,20 @@ export function Header() {
 
             <button
               className="
+                cursor-pointer
                 px-3 py-2 mb-1 rounded-lg
                 bg-[#8B5CF6] text-white
                 hover:opacity-90
                 transition-all
                 font-medium
+                text-base
                 shadow-md shadow-[#3B82F6]/20
               "
             >
               Request Demo
             </button>
 
-            <button className="md:hidden text-[#737373]">
+            <button className="cursor-pointer md:hidden text-[#737373]">
               <Menu className="w-6 h-6" />
             </button>
           </div>

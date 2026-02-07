@@ -81,12 +81,19 @@ function PainPointCard({ name, role, quote, position, avatar, delay, color, inde
         }}
       >
         <div
-          className="backdrop-blur-md border rounded-2xl p-4 shadow-xl w-[280px] text-left hover:scale-105 transition-transform duration-300 relative overflow-hidden"
+          className="backdrop-blur-md border-2 rounded-2xl p-4 shadow-xl w-[280px] text-left hover:scale-[1.02] hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
           style={{
             borderColor: color,
             backgroundColor: `${color}1A` // 10% opacity
           }}
         >
+          {/* Glow effect on hover */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            style={{
+              boxShadow: `0 0 30px ${color}80, inset 0 0 20px ${color}40`,
+              borderRadius: '1rem'
+            }}
+          />
           {/* subtle white overlay for readability */}
           <div className="absolute inset-0 bg-white/60 -z-10" />
 
@@ -146,10 +153,10 @@ export function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-              <button className="group bg-[#3B82F6] text-white px-8 py-4 rounded-xl hover:bg-[#2563EB] transition-all flex items-center gap-2 font-semibold text-[15px] shadow-lg shadow-[#3B82F6]/30 hover:shadow-xl hover:-translate-y-0.5">
+              <button className="cursor-pointer group bg-[#3B82F6] text-white px-8 py-4 rounded-xl hover:bg-[#2563EB] transition-all flex items-center gap-2 font-semibold text-base shadow-lg shadow-[#3B82F6]/30 hover:shadow-xl hover:-translate-y-0.5">
                 <span>Start Hiring Smarter</span>
               </button>
-              <button className="group bg-white text-[#404040] px-8 py-4 rounded-xl hover:bg-[#F3F4F6] transition-all flex items-center gap-2 font-medium text-[15px] border border-[#F3F4F6] shadow-sm hover:shadow-md hover:-translate-y-0.5">
+              <button className="cursor-pointer group bg-white text-[#404040] px-8 py-4 rounded-xl hover:bg-[#F3F4F6] transition-all flex items-center gap-2 font-medium text-base border border-[#F3F4F6] shadow-sm hover:shadow-md hover:-translate-y-0.5">
                 <span>See How It Works</span>
               </button>
             </div>

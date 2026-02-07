@@ -17,7 +17,7 @@ export function FinalCTANew() {
       </div>
 
       <div className="w-full mx-auto px-[8%] text-center relative z-10">
-       
+
 
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-5 leading-tight">
           Ready to Hire Better, Faster?
@@ -30,11 +30,11 @@ export function FinalCTANew() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-          <button className="group bg-transparent text-white px-8 py-4 rounded-xl hover:bg-white/10 transition-all flex items-center gap-2 text-base font-bold border-[3px] border-white backdrop-blur-sm">
+          <button className="cursor-pointer group bg-transparent text-white px-8 py-4 rounded-xl hover:bg-white/10 transition-all flex items-center gap-2 text-base font-bold border-[3px] border-white backdrop-blur-sm">
             Start Free Trial
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
-          <button className="text-white px-8 py-4 rounded-xl hover:bg-white/10 transition-colors border-2 border-white/60 text-base font-bold backdrop-blur-sm">
+          <button className="cursor-pointer text-white px-8 py-4 rounded-xl hover:bg-white/10 transition-colors border-2 border-white/60 text-base font-bold backdrop-blur-sm">
             Schedule Demo
           </button>
         </div>
