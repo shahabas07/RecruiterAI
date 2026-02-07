@@ -2,7 +2,7 @@ import { ArrowRight, Check } from 'lucide-react';
 
 export function FinalCTANew() {
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-[#3B82F6] via-[#7C3AED] to-[#B197FC] relative overflow-hidden">
+    <section className="py-16 md:py-20 bg-[#3B82F6] relative overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse"></div>
