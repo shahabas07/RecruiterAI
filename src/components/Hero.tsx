@@ -122,46 +122,55 @@ function PainPointCard({ name, role, quote, position, avatar, delay, color, inde
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const whiteButtonRef = useRef<HTMLButtonElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const [paths, setPaths] = useState<string[]>([]);
 
   useEffect(() => {
     const updatePaths = () => {
-      if (!containerRef.current || !buttonRef.current) return;
+      if (!containerRef.current || !buttonRef.current || !whiteButtonRef.current) return;
 
       const containerRect = containerRef.current.getBoundingClientRect();
-      const btnRect = buttonRef.current.getBoundingClientRect();
+      const blueBtnRect = buttonRef.current.getBoundingClientRect();
+      const whiteBtnRect = whiteButtonRef.current.getBoundingClientRect();
 
       const newPaths = painPointCards.map((card, index) => {
         const cardEl = cardsRef.current[index];
         if (!cardEl) return '';
 
         const cardRect = cardEl.getBoundingClientRect();
+        const isLeft = card.position.includes('left');
 
         // Calculate start point relative to container
         let startX, startY;
 
         // Connect to inner side of card
-        if (card.position.includes('left')) {
+        if (isLeft) {
           startX = (cardRect.right - containerRect.left);
         } else {
           startX = (cardRect.left - containerRect.left);
         }
         startY = (cardRect.top + cardRect.height / 2 - containerRect.top);
 
-        // Connect to side of button
+        // Connect to OUTER side of the respective button
+        // Left cards -> Left side of Blue Button
+        // Right cards -> Right side of White Button
         let endX, endY;
-        if (card.position.includes('left')) {
-          endX = (btnRect.left - containerRect.left);
+        if (isLeft) {
+          endX = (blueBtnRect.left - containerRect.left);
+          endY = (blueBtnRect.top + blueBtnRect.height / 2 - containerRect.top);
         } else {
-          endX = (btnRect.right - containerRect.left);
+          endX = (whiteBtnRect.right - containerRect.left);
+          endY = (whiteBtnRect.top + whiteBtnRect.height / 2 - containerRect.top);
         }
-        endY = (btnRect.top + btnRect.height / 2 - containerRect.top);
 
-        // Control points for smooth curve
-        const cp1X = startX + (endX - startX) * 0.5;
+        // Control points for "Stay Wide" path
+        const channelX = startX + (endX - startX) * 0.15;
+
+        const cp1X = channelX;
         const cp1Y = startY;
-        const cp2X = endX - (endX - startX) * 0.5;
+
+        const cp2X = channelX;
         const cp2Y = endY;
 
         return `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
@@ -273,7 +282,10 @@ export function Hero() {
               >
                 <span>Start Hiring Smarter</span>
               </button>
-              <button className="cursor-pointer group bg-white text-[#404040] px-8 py-4 rounded-xl hover:bg-[#F3F4F6] transition-all flex items-center gap-2 font-medium text-base border border-[#F3F4F6] shadow-sm hover:shadow-md hover:-translate-y-0.5">
+              <button
+                ref={whiteButtonRef}
+                className="cursor-pointer group bg-white text-[#404040] px-8 py-4 rounded-xl hover:bg-[#F3F4F6] transition-all flex items-center gap-2 font-medium text-base border border-[#F3F4F6] shadow-sm hover:shadow-md hover:-translate-y-0.5"
+              >
                 <span>See How It Works</span>
               </button>
             </div>
