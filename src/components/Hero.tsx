@@ -134,49 +134,6 @@ export function Hero() {
         <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px]"></div>
       </div>
 
-      {/* Connecting Lines Layer */}
-      <div className="absolute inset-0 z-10 pointer-events-none hidden xl:block overflow-visible">
-        <svg className="w-full h-full overflow-visible" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="lineConnect" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#A5D8FF" stopOpacity="0" />
-              <stop offset="20%" stopColor="#3B82F6" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.8" />
-            </linearGradient>
-            <marker id="dot" markerWidth="4" markerHeight="4" refX="2" refY="2">
-              <circle cx="2" cy="2" r="2" fill="#3B82F6" />
-            </marker>
-          </defs>
-
-          {/* Path from Sarah K (Top Left) to Button (Center) 
-              Start: ~15% left + card center offset = ~22% x
-              Top: ~15% top + card height offset = ~30% y
-              End: 50% x, ~65% y
-          */}
-          <path
-            d="M 22 28 L 22 48 Q 22 52 26 52 L 46 52 Q 50 52 50 56 L 50 62"
-            fill="none"
-            stroke="url(#lineConnect)"
-            strokeWidth="0.2"
-            strokeDasharray="1 1"
-            className="animate-dash"
-            opacity="0.6"
-          />
-
-          {/* Moving particle effect */}
-          <circle r="0.4" fill="#3B82F6" className="animate-pulse">
-            <animateMotion
-              dur="4s"
-              repeatCount="indefinite"
-              path="M 22 28 L 22 48 Q 22 52 26 52 L 46 52 Q 50 52 50 56 L 50 62"
-              keyPoints="0;1"
-              keyTimes="0;1"
-              calcMode="linear"
-            />
-          </circle>
-        </svg>
-      </div>
-
       {/* Pain Point Cards - Scattered positioning */}
       {painPointCards.map((card, index) => (
         <PainPointCard key={index} {...card} index={index} />
@@ -186,7 +143,7 @@ export function Hero() {
         <div className="relative w-full mx-auto">
           {/* Center Content */}
           <div className="text-center py-12">
-            <h1 className="font-display text-[54px] md:text-[72px] leading-[1.1] font-bold hero-gradient-text mb-8 tracking-tight drop-shadow-sm pb-2">
+            <h1 className="font-serif text-[54px] md:text-[72px] leading-[1.1] font-bold hero-gradient-text mb-8 tracking-tight drop-shadow-sm pb-2">
               Every Hire,<br />
               Faster and Better
             </h1>
@@ -219,15 +176,6 @@ export function Hero() {
       </div>
 
       <style>{`
-        @keyframes dash {
-          to {
-            stroke-dashoffset: -20;
-          }
-        }
-        .animate-dash {
-          animation: dash 1s linear infinite;
-        }
-
         @keyframes fadeSlideIn {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
