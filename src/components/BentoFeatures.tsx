@@ -54,7 +54,7 @@ export function BentoFeatures() {
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8 relative z-10">
         <div className="text-center mb-20">
           <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            The RecruiterAI Advantage
+            The Recruiter<span className="text-[#D0BCFF]">AI</span> Advantage
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-lg">
             Measurable business impact delivered through data-driven AI recruitment.
@@ -87,31 +87,31 @@ export function BentoFeatures() {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-white/60 backdrop-blur-md border border-blue-100 p-6 rounded-2xl hover:border-blue-400 transition-colors">
+          <div className="bg-[#D0BCFF] backdrop-blur-md border border-blue-100 p-6 rounded-2xl hover:border-blue-400 transition-colors">
             <h4 className="font-bold text-slate-900 mb-2 text-base">Fast resume processing</h4>
             <p className="text-sm text-slate-600 leading-relaxed">AI parses and ranks 250+ applications per day vs 25 manually.</p>
           </div>
-          <div className="bg-white/60 backdrop-blur-md border border-indigo-100 p-6 rounded-2xl hover:border-indigo-400 transition-colors">
+          <div className="bg-[#D0BCFF] backdrop-blur-md border border-indigo-100 p-6 rounded-2xl hover:border-indigo-400 transition-colors">
             <h4 className="font-bold text-slate-900 mb-2 text-base">Quick time-to-hire</h4>
             <p className="text-sm text-slate-600 leading-relaxed">Average hiring timeline drops from 42 days to just 12 days.</p>
           </div>
-          <div className="bg-white/60 backdrop-blur-md border border-sky-100 p-6 rounded-2xl hover:border-sky-400 transition-colors">
+          <div className="bg-[#D0BCFF] backdrop-blur-md border border-sky-100 p-6 rounded-2xl hover:border-sky-400 transition-colors">
             <h4 className="font-bold text-slate-900 mb-2 text-base">Massive capacity increase</h4>
             <p className="text-sm text-slate-600 leading-relaxed">AI conducts 200+ automated screening interviews daily.</p>
           </div>
-          <div className="bg-white/60 backdrop-blur-md border border-slate-200 p-6 rounded-2xl hover:border-slate-400 transition-colors">
+          <div className="bg-[#D0BCFF] backdrop-blur-md border border-slate-200 p-6 rounded-2xl hover:border-slate-400 transition-colors">
             <h4 className="font-bold text-slate-900 mb-2 text-base">Less drop-off</h4>
             <p className="text-sm text-slate-600 leading-relaxed">Smart application forms reduce candidate drop-off dramatically.</p>
           </div>
-          <div className="bg-white/60 backdrop-blur-md border border-teal-100 p-6 rounded-2xl hover:border-teal-400 transition-colors">
+          <div className="bg-[#D0BCFF] backdrop-blur-md border border-teal-100 p-6 rounded-2xl hover:border-teal-400 transition-colors">
             <h4 className="font-bold text-slate-900 mb-2 text-base">Better applicants</h4>
             <p className="text-sm text-slate-600 leading-relaxed">Optimizer attracts higher-quality candidate pipelines instantly.</p>
           </div>
-          <div className="bg-white/60 backdrop-blur-md border border-slate-900/10 p-6 rounded-2xl hover:border-slate-900 transition-colors">
+          <div className="bg-[#D0BCFF] backdrop-blur-md border border-slate-900/10 p-6 rounded-2xl hover:border-slate-900 transition-colors">
             <h4 className="font-bold text-slate-900 mb-2 text-base">Lower expenses</h4>
             <p className="text-sm text-slate-600 leading-relaxed">80% lower costs vs traditional recruiting agencies and software.</p>
           </div>
-          <div className="bg-white/60 backdrop-blur-md border border-purple-100 p-6 rounded-2xl hover:border-purple-400 transition-colors">
+          <div className="bg-[#D0BCFF] backdrop-blur-md border border-purple-100 p-6 rounded-2xl hover:border-purple-400 transition-colors">
             <h4 className="font-bold text-slate-900 mb-2 text-base">Fewer mistakes</h4>
             <p className="text-sm text-slate-600 leading-relaxed">Skills matching improves hiring accuracy dramatically.</p>
           </div>
