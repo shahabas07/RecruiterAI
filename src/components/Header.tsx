@@ -75,7 +75,7 @@ export function Header() {
                 hover:opacity-90
                 transition-all
                 font-medium
-                text-base
+                text-sm
                 shadow-md shadow-[#3B82F6]/20
               "
             >

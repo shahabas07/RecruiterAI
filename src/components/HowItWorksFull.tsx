@@ -333,7 +333,7 @@ export function HowItWorksFull() {
         >
 
           <h1 className="font-display text-3xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            AI Recruiting Software That Works Like Your Own HR Team
+            <span className="text-[#D0BCFF]">AI Recruiting</span> Software That Works Like Your Own HR Team
           </h1>
           <p className="text-sm md:text-base text-gray-500 max-w-2xl mx-auto">
             Build custom hiring workflows in minutes. No coding required.
