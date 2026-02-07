@@ -332,7 +332,7 @@ export function HowItWorksFull() {
           className="text-center mb-12"
         >
 
-          <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+          <h1 className="font-display text-3xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             AI Recruiting Software That Works Like Your Own HR Team
           </h1>
           <p className="text-sm md:text-base text-gray-500 max-w-2xl mx-auto">

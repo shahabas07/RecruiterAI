@@ -71,7 +71,7 @@ export function Header() {
                 cursor-pointer
                 hidden md:block
                 px-3 py-2 mb-1 rounded-lg
-                bg-[#8B5CF6] text-white
+                bg-[#B197FC] text-white
                 hover:opacity-90
                 transition-all
                 font-medium

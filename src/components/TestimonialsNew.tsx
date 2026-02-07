@@ -127,8 +127,8 @@ export function TestimonialsNew() {
     <section id="testimonials" className="py-20 bg-[#F3F4F6]">
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-12">
-         
-          <h2 className="text-[48px] leading-tight font-bold text-gray-900 mb-4">
+
+          <h2 className="font-display text-[48px] leading-tight font-bold text-gray-900 mb-4">
             Loved By Hiring Teams
           </h2>
           <p className="text-[15px] text-gray-600 max-w-2xl mx-auto">
@@ -144,7 +144,7 @@ export function TestimonialsNew() {
         </div>
 
         {/* Trust Section */}
-        
+
       </div>
     </section>
   );

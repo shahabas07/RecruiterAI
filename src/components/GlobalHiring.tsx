@@ -106,7 +106,7 @@ export function GlobalHiring() {
         {/* Header */}
         <div className="text-center mb-20">
 
-          <h2 className="text-[48px] leading-tight font-bold text-[#FFFFFF] mb-6 tracking-tight">
+          <h2 className="font-display text-[48px] leading-tight font-bold text-[#FFFFFF] mb-6 tracking-tight">
             Source from Every Platform
           </h2>
           <p className="text-[15px] text-gray-400 max-w-2xl mx-auto">

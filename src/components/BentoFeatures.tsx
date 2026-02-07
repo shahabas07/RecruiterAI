@@ -53,7 +53,7 @@ export function BentoFeatures() {
 
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8 relative z-10">
         <div className="text-center mb-20">
-          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 tracking-tight">
             The RecruiterAI Advantage
           </h2>
           <p className="text-slate-600 max-w-2xl mx-auto text-lg">

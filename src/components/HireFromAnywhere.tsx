@@ -46,7 +46,7 @@ export function HireFromAnywhere() {
       <div className="w-full mx-auto px-[8%]">
         <div className="text-center mb-12">
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Post Once, Reach Everywhere
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">

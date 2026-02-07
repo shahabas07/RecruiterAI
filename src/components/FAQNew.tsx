@@ -61,7 +61,7 @@ export function FAQNew() {
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Frequently Asked Questions
           </h2>
           <p className="text-xl text-gray-600">

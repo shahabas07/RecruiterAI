@@ -143,7 +143,7 @@ export function Hero() {
         <div className="relative w-full mx-auto">
           {/* Center Content */}
           <div className="text-center py-12">
-            <h1 className="font-serif text-[54px] md:text-[72px] leading-[1.1] font-bold hero-gradient-text mb-8 tracking-tight drop-shadow-sm pb-2">
+            <h1 className="font-display text-[54px] md:text-[72px] leading-[1.1] font-bold hero-gradient-text mb-8 tracking-tight drop-shadow-sm pb-2">
               Every Hire,<br />
               Faster and Better
             </h1>
