@@ -3,9 +3,19 @@ import { useEffect, useRef, useState } from 'react';
 
 export function BentoFeatures() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Check for mobile on mount and resize
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    // Observer for chart animation
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -20,6 +30,7 @@ export function BentoFeatures() {
     }
 
     return () => {
+      window.removeEventListener('resize', checkMobile);
       if (chartRef.current) {
         observer.unobserve(chartRef.current);
       }
@@ -52,18 +63,18 @@ export function BentoFeatures() {
         </div>
 
         {/* Bar Chart Section */}
-        <div className="mb-24">
-          <div ref={chartRef} className="flex justify-between gap-2 md:gap-4 h-[300px] md:h-[450px] items-end">
+        <div className="mb-24 overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4 md:overflow-visible md:pb-0 md:mx-0 md:px-0">
+          <div ref={chartRef} className="flex justify-between gap-3 md:gap-4 h-[300px] md:h-[450px] items-end min-w-[600px] md:min-w-0 pr-4 md:pr-0">
             {bars.map((bar, index) => (
               <div key={index} className="flex-1 flex flex-col items-center justify-end h-full group">
-                <div className="mb-2 md:mb-4 text-center">
+                <div className="mb-3 md:mb-4 text-center w-full">
                   <span className="block text-xl md:text-3xl font-bold text-slate-900">{bar.value}</span>
-                  <span className="text-[8px] md:text-xs uppercase tracking-widest text-slate-500 font-semibold">{bar.label}</span>
+                  <span className="block text-[10px] md:text-xs uppercase tracking-widest text-slate-500 font-semibold mt-1 whitespace-nowrap">{bar.label}</span>
                 </div>
                 <div
                   className={`w-full transition-all duration-1000 ease-out ${bar.shadow}`}
                   style={{
-                    height: isVisible ? `${bar.height * 0.6}px` : '0px',
+                    height: isVisible ? (isMobile ? `${bar.height * 0.7}px` : `${bar.height}px`) : '0px',
                     backgroundColor: bar.color,
                     borderTopLeftRadius: '12px',
                     borderTopRightRadius: '12px'
