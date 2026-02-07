@@ -1,6 +1,7 @@
 
 
 import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 
 type Position = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 
@@ -53,7 +54,7 @@ const painPointCards: PainPoint[] = [
   }
 ];
 
-function PainPointCard({ name, role, quote, position, avatar, delay, color, index }: typeof painPointCards[0] & { index: number }) {
+function PainPointCard({ name, role, quote, position, avatar, delay, color, index, cardRef }: typeof painPointCards[0] & { index: number, cardRef: React.Ref<HTMLDivElement> }) {
   const positionStyles = {
     'top-left': { top: '15%', left: '15%' },
     'top-right': { top: '20%', right: '12%' },
@@ -63,6 +64,7 @@ function PainPointCard({ name, role, quote, position, avatar, delay, color, inde
 
   return (
     <motion.div
+      ref={cardRef}
       className="absolute hidden xl:block z-20"
       style={positionStyles[position]}
       initial={{ opacity: 0, scale: 0.5 }}
@@ -118,8 +120,69 @@ function PainPointCard({ name, role, quote, position, avatar, delay, color, inde
 }
 
 export function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [paths, setPaths] = useState<string[]>([]);
+
+  useEffect(() => {
+    const updatePaths = () => {
+      if (!containerRef.current || !buttonRef.current) return;
+
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const btnRect = buttonRef.current.getBoundingClientRect();
+
+      const newPaths = painPointCards.map((card, index) => {
+        const cardEl = cardsRef.current[index];
+        if (!cardEl) return '';
+
+        const cardRect = cardEl.getBoundingClientRect();
+
+        // Calculate start point relative to container
+        let startX, startY;
+
+        // Connect to inner side of card
+        if (card.position.includes('left')) {
+          startX = (cardRect.right - containerRect.left);
+        } else {
+          startX = (cardRect.left - containerRect.left);
+        }
+        startY = (cardRect.top + cardRect.height / 2 - containerRect.top);
+
+        // Connect to side of button
+        let endX, endY;
+        if (card.position.includes('left')) {
+          endX = (btnRect.left - containerRect.left);
+        } else {
+          endX = (btnRect.right - containerRect.left);
+        }
+        endY = (btnRect.top + btnRect.height / 2 - containerRect.top);
+
+        // Control points for smooth curve
+        const cp1X = startX + (endX - startX) * 0.5;
+        const cp1Y = startY;
+        const cp2X = endX - (endX - startX) * 0.5;
+        const cp2Y = endY;
+
+        return `M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${endX} ${endY}`;
+      });
+
+      setPaths(newPaths);
+    };
+
+    updatePaths();
+    window.addEventListener('resize', updatePaths);
+    // Recalculate after a short delay to ensure layout is settled
+    const timer = setTimeout(updatePaths, 1000);
+
+    return () => {
+      window.removeEventListener('resize', updatePaths);
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden bg-[#EFF6FF] min-h-[800px] flex items-center justify-center">
+    <section ref={containerRef} className="relative py-20 md:py-32 overflow-hidden bg-[#EFF6FF] min-h-[800px] flex items-center justify-center">
       {/* Dynamic Background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Subtle Grid Pattern */}
@@ -134,16 +197,67 @@ export function Hero() {
         <div className="absolute inset-0 bg-white/20 backdrop-blur-[1px]"></div>
       </div>
 
+      {/* Dynamic Connecting Lines */}
+      <div className="absolute inset-0 z-0 pointer-events-none hidden xl:block">
+        <svg className="w-full h-full" style={{ overflow: 'visible' }}>
+          <defs>
+            <linearGradient id="flowGradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.2" />
+              <stop offset="50%" stopColor="#3B82F6" stopOpacity="1" />
+              <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.2" />
+            </linearGradient>
+          </defs>
+
+          {paths.map((d, i) => d && (
+            <g key={i}>
+              <defs>
+                <mask id={`draw-mask-${i}`}>
+                  <motion.path
+                    d={d}
+                    stroke="white"
+                    strokeWidth="3"
+                    fill="none"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    transition={{
+                      duration: 1.2,
+                      delay: 0.5 + (i * 0.1),
+                      ease: "easeInOut"
+                    }}
+                  />
+                </mask>
+              </defs>
+              <path
+                d={d}
+                fill="none"
+                stroke="#3B82F6"
+                strokeWidth="1.5"
+                className="animate-flow-line"
+                strokeDasharray="10 10"
+                opacity="0.5"
+                mask={`url(#draw-mask-${i})`}
+              />
+              {/* Add a glowing dot at the end that travels with the line? Maybe too complex for now. */}
+            </g>
+          ))}
+        </svg>
+      </div>
+
       {/* Pain Point Cards - Scattered positioning */}
       {painPointCards.map((card, index) => (
-        <PainPointCard key={index} {...card} index={index} />
+        <PainPointCard
+          key={index}
+          {...card}
+          index={index}
+          cardRef={(el) => { cardsRef.current[index] = el; }}
+        />
       ))}
 
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8 relative z-10">
         <div className="relative w-full mx-auto">
           {/* Center Content */}
           <div className="text-center py-12">
-            <h1 className="font-serif text-[54px] md:text-[72px] leading-[1.1] font-bold hero-gradient-text mb-8 tracking-tight drop-shadow-sm pb-2">
+            <h1 className="font-display text-[54px] md:text-[72px] leading-[1.1] font-bold hero-gradient-text mb-8 tracking-tight drop-shadow-sm pb-2">
               Every Hire,<br />
               Faster and Better
             </h1>
@@ -153,7 +267,10 @@ export function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
-              <button className="cursor-pointer group bg-[#3B82F6] text-white px-8 py-4 rounded-xl hover:bg-[#2563EB] transition-all flex items-center gap-2 font-semibold text-base shadow-lg shadow-[#3B82F6]/30 hover:shadow-xl hover:-translate-y-0.5">
+              <button
+                ref={buttonRef}
+                className="cursor-pointer group bg-[#3B82F6] text-white px-8 py-4 rounded-xl hover:bg-[#2563EB] transition-all flex items-center gap-2 font-semibold text-base shadow-lg shadow-[#3B82F6]/30 hover:shadow-xl hover:-translate-y-0.5"
+              >
                 <span>Start Hiring Smarter</span>
               </button>
               <button className="cursor-pointer group bg-white text-[#404040] px-8 py-4 rounded-xl hover:bg-[#F3F4F6] transition-all flex items-center gap-2 font-medium text-base border border-[#F3F4F6] shadow-sm hover:shadow-md hover:-translate-y-0.5">
@@ -176,6 +293,14 @@ export function Hero() {
       </div>
 
       <style>{`
+        @keyframes flowLine {
+          from { stroke-dashoffset: 0; }
+          to { stroke-dashoffset: -100; }
+        }
+        .animate-flow-line {
+          animation: flowLine 30s linear infinite;
+        }
+
         @keyframes fadeSlideIn {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
