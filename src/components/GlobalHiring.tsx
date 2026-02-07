@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
   Globe2,
   Linkedin,
@@ -79,7 +80,20 @@ const platformIcons: Record<string, any> = {
 };
 
 export function GlobalHiring() {
-  const radius = 230; // Increased radius for better spacing
+  const [radius, setRadius] = useState(230);
+
+  useEffect(() => {
+    const updateRadius = () => {
+      setRadius(window.innerWidth < 768 ? 140 : 230);
+    };
+
+    // Set initial value
+    updateRadius();
+
+    // Update on resize
+    window.addEventListener('resize', updateRadius);
+    return () => window.removeEventListener('resize', updateRadius);
+  }, []);
 
   return (
     <section className="py-24 bg-[#000000] relative overflow-hidden">
@@ -101,7 +115,7 @@ export function GlobalHiring() {
         </div>
 
         {/* Central Hub Visualization */}
-        <div className="relative h-[600px] md:h-[700px] mb-16 flex items-center justify-center">
+        <div className="relative h-[500px] md:h-[700px] mb-16 flex items-center justify-center">
 
           {/* Central Globe */}
           <div className="relative z-20">
@@ -109,7 +123,7 @@ export function GlobalHiring() {
             <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6] to-[#B197FC] rounded-full blur-3xl opacity-40 animate-pulse-slow"></div>
 
             {/* Globe Container */}
-            <div className="relative w-32 h-32 bg-[#404040] rounded-full border-4 border-[#B197FC] shadow-2xl flex items-center justify-center overflow-hidden">
+            <div className="relative w-20 h-20 md:w-32 md:h-32 bg-[#404040] rounded-full border-2 md:border-4 border-[#B197FC] shadow-2xl flex items-center justify-center overflow-hidden">
               {/* Inner Glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#3B82F6]/30 to-[#B197FC]/30"></div>
 
@@ -127,7 +141,7 @@ export function GlobalHiring() {
               </svg>
 
               {/* Icon */}
-              <Globe2 className="w-12 h-12 text-[#B197FC] relative z-10" />
+              <Globe2 className="w-8 h-8 md:w-12 md:h-12 text-[#B197FC] relative z-10" />
             </div>
 
             {/* Pulsing Rings */}
@@ -184,15 +198,15 @@ export function GlobalHiring() {
                 }}
               >
                 <div className="relative animate-float" style={{ animationDelay: `${platform.angle * 0.005}s` }}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#B197FC]/20 to-[#3B82F6]/20 rounded-2xl blur-xl"></div>
-                  <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 shadow-2xl hover:bg-white/20 transition-all hover:scale-110 group cursor-pointer">
-                    <div className="w-10 h-10 mb-2 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#B197FC]/20 to-[#3B82F6]/20 rounded-xl md:rounded-2xl blur-xl"></div>
+                  <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl md:rounded-2xl p-2 md:p-4 shadow-2xl hover:bg-white/20 transition-all hover:scale-110 group cursor-pointer">
+                    <div className="w-6 h-6 md:w-10 md:h-10 mb-1 md:mb-2 flex items-center justify-center">
                       {(() => {
                         const Icon = platformIcons[platform.name] || Search;
-                        return <Icon className="w-8 h-8 text-white opacity-90 group-hover:opacity-100 transition-opacity" />;
+                        return <Icon className="w-5 h-5 md:w-8 md:h-8 text-white opacity-90 group-hover:opacity-100 transition-opacity" />;
                       })()}
                     </div>
-                    <div className="text-white text-[10px] font-semibold whitespace-nowrap text-center opacity-80 group-hover:opacity-100 transition-opacity">{platform.name}</div>
+                    <div className="text-white text-[8px] md:text-[10px] font-semibold whitespace-nowrap text-center opacity-80 group-hover:opacity-100 transition-opacity">{platform.name}</div>
                   </div>
                 </div>
               </div>
@@ -204,22 +218,22 @@ export function GlobalHiring() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
           <div className="text-center">
-            <div className="text-[42px] leading-none font-bold text-white mb-2 bg-gradient-to-r from-[#A5D8FF] to-[#3B82F6] bg-clip-text text-transparent">25+</div>
-            <div className="text-[13px] text-gray-400 font-medium">Platforms</div>
+            <div className="text-2xl md:text-[42px] leading-none font-bold text-white mb-2 bg-gradient-to-r from-[#A5D8FF] to-[#3B82F6] bg-clip-text text-transparent">25+</div>
+            <div className="text-xs md:text-[13px] text-gray-400 font-medium">Platforms</div>
           </div>
           <div className="text-center">
-            <div className="text-[42px] leading-none font-bold text-white mb-2 bg-gradient-to-r from-[#D0BCFF] to-[#B197FC] bg-clip-text text-transparent">1M+</div>
-            <div className="text-[13px] text-gray-400 font-medium">Candidates</div>
+            <div className="text-2xl md:text-[42px] leading-none font-bold text-white mb-2 bg-gradient-to-r from-[#D0BCFF] to-[#B197FC] bg-clip-text text-transparent">1M+</div>
+            <div className="text-xs md:text-[13px] text-gray-400 font-medium">Candidates</div>
           </div>
           <div className="text-center">
-            <div className="text-[42px] leading-none font-bold text-white mb-2 bg-gradient-to-r from-[#B197FC] to-[#8B5CF6] bg-clip-text text-transparent">10K+</div>
-            <div className="text-[13px] text-gray-400 font-medium">Companies</div>
+            <div className="text-2xl md:text-[42px] leading-none font-bold text-white mb-2 bg-gradient-to-r from-[#B197FC] to-[#8B5CF6] bg-clip-text text-transparent">10K+</div>
+            <div className="text-xs md:text-[13px] text-gray-400 font-medium">Companies</div>
           </div>
           <div className="text-center">
-            <div className="text-[42px] leading-none font-bold text-white mb-2 bg-gradient-to-r from-[#3B82F6] to-[#2563EB] bg-clip-text text-transparent">Real-time</div>
-            <div className="text-[13px] text-gray-400 font-medium">Sync</div>
+            <div className="text-2xl md:text-[42px] leading-none font-bold text-white mb-2 bg-gradient-to-r from-[#3B82F6] to-[#2563EB] bg-clip-text text-transparent">Real-time</div>
+            <div className="text-xs md:text-[13px] text-gray-400 font-medium">Sync</div>
           </div>
         </div>
       </div>
