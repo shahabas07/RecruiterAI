@@ -60,7 +60,7 @@ export function Header() {
                 hover:text-[#3B82F6]
                 transition-colors
                 font-medium
-                text-base
+                text-sm
               "
             >
               Sign In
@@ -75,7 +75,7 @@ export function Header() {
                 hover:opacity-90
                 transition-all
                 font-medium
-                text-sm
+                text-xs
                 shadow-md shadow-[#3B82F6]/20
               "
             >

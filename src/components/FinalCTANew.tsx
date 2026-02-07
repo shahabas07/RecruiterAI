@@ -30,7 +30,7 @@ export function FinalCTANew() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-          <button className="cursor-pointer group bg-transparent text-white px-8 py-4 rounded-xl hover:bg-white/10 transition-all flex items-center gap-2 text-base font-bold border-[3px] border-white backdrop-blur-sm">
+          <button className="cursor-pointer group text-white px-8 py-4 rounded-xl bg-black hover:bg-black/50 transition-all flex items-center gap-2 text-base font-bold border-[3px] border-white backdrop-blur-sm">
             Start Free Trial
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </button>
