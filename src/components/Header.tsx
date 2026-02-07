@@ -69,6 +69,7 @@ export function Header() {
             <button
               className="
                 cursor-pointer
+                hidden md:block
                 px-3 py-2 mb-1 rounded-lg
                 bg-[#8B5CF6] text-white
                 hover:opacity-90

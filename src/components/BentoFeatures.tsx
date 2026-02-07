@@ -52,24 +52,26 @@ export function BentoFeatures() {
         </div>
 
         {/* Bar Chart Section */}
-        <div ref={chartRef} className="flex justify-between gap-4 mb-24 h-[450px] items-end">
-          {bars.map((bar, index) => (
-            <div key={index} className="flex-1 min-w-[120px] flex flex-col items-center justify-end h-full group">
-              <div className="mb-4 text-center">
-                <span className="block text-3xl font-bold text-slate-900">{bar.value}</span>
-                <span className="text-xs uppercase tracking-widest text-slate-500 font-semibold">{bar.label}</span>
+        <div className="overflow-x-auto -mx-4 px-4 mb-24">
+          <div ref={chartRef} className="flex gap-4 h-[450px] items-end min-w-[900px] md:min-w-0">
+            {bars.map((bar, index) => (
+              <div key={index} className="flex-1 min-w-[120px] flex flex-col items-center justify-end h-full group">
+                <div className="mb-4 text-center">
+                  <span className="block text-3xl font-bold text-slate-900">{bar.value}</span>
+                  <span className="text-xs uppercase tracking-widest text-slate-500 font-semibold">{bar.label}</span>
+                </div>
+                <div
+                  className={`w-full transition-all duration-1000 ease-out ${bar.shadow}`}
+                  style={{
+                    height: isVisible ? `${bar.height}px` : '0px',
+                    backgroundColor: bar.color,
+                    borderTopLeftRadius: '24px',
+                    borderTopRightRadius: '24px'
+                  }}
+                ></div>
               </div>
-              <div
-                className={`w-full transition-all duration-1000 ease-out ${bar.shadow}`}
-                style={{
-                  height: isVisible ? `${bar.height}px` : '0px',
-                  backgroundColor: bar.color,
-                  borderTopLeftRadius: '24px',
-                  borderTopRightRadius: '24px'
-                }}
-              ></div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         {/* Bento Grid */}

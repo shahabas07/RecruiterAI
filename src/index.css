@@ -66,9 +66,16 @@
   --color-light-primary: #3B82F6;
 }
 
+
 @layer base {
   html {
     font-size: 110%;
+    overflow-x: hidden;
+  }
+  
+  body {
+    overflow-x: hidden;
+    width: 100%;
   }
 }
 
